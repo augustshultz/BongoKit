@@ -1,7 +1,4 @@
 //
-//  Prediction.swift
-//  BongoKit
-//
 //  Created by August Shultz on 1/1/19.
 //
 
