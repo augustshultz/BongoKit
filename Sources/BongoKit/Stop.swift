@@ -5,7 +5,7 @@
 import Foundation
 
 public struct Stop: Decodable {
-  public let id: String
+  let id: String
   public let name: String
   public let lat: Float
   public let lon: Float
