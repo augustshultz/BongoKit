@@ -4,7 +4,7 @@
 
 import Foundation
 
-enum BongoURL {
+public enum BongoURL {
   case routeInfo(Int)
   case routeList
   case predictions(Int)
