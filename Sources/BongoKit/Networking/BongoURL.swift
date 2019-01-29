@@ -13,19 +13,23 @@ public enum BongoURL {
   case buses(Int)
   
   public var url: URL {
+    return URL(string: "https://api.bongo.org/\(pathComponent)")!
+  }
+  
+  private var pathComponent: String {
     switch self {
     case .routeInfo(let routeId):
-      return URL(string: "https://api.bongo.org/routes/\(routeId)")!
+      return "routes/\(routeId)"
     case .routeList:
-      return URL(string: "https://api.bongo.org/routes/")!
+      return "routes/"
     case .predictions(let stopId):
-      return URL(string: "https://api.bongo.org/predictions/\(stopId)")!
+      return "predictions/\(stopId)"
     case .stopList:
-      return URL(string: "https://api.bongo.org/stops")!
+      return "stops"
     case .stopInfo(let stopId):
-      return URL(string: "https://api.bongo.org/stops/\(stopId)")!
+      return "stops/\(stopId)"
     case .buses(let routeId):
-      return URL(string: "https://api.bongo.org/buses/\(routeId)")!
+      return "buses/\(routeId)"
     }
   }
 }
