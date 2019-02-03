@@ -11,11 +11,11 @@ public enum BongoURL {
   case stopList
   case stopInfo(Int)
   case buses(Int)
-  
+
   public var url: URL {
     return URL(string: "https://api.bongo.org/\(pathComponent)")!
   }
-  
+
   private var pathComponent: String {
     switch self {
     case .routeInfo(let routeId):
