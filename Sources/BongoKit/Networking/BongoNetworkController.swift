@@ -10,6 +10,8 @@ public class BongoNetworkController {
   private let session = URLSession.shared
   private let jsonDecoder = JSONDecoder()
   
+  public init() {}
+  
   public func stops() -> [Stop] {
     return fetch(fromUrl: BongoURL.stopList.url)
   }
