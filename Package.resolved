@@ -2,12 +2,12 @@
   "object": {
     "pins": [
       {
-        "package": "CommandKit",
-        "repositoryURL": "https://github.com/augustshultz/CommandKit.git",
+        "package": "NetworkKit",
+        "repositoryURL": "https://github.com/augustshultz/NetworkKit.git",
         "state": {
           "branch": null,
-          "revision": "329a02186233279b0df1bd732135f19ea1a085de",
-          "version": "0.2.2"
+          "revision": "80262e415b84c3fd3b4720cb1893b55032416922",
+          "version": "0.1.0"
         }
       }
     ]
