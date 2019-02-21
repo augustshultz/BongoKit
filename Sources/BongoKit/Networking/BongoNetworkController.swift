@@ -3,18 +3,18 @@
 //
 
 import Foundation
-import CommandKit
+import NetworkKit
 
-class BongoNetworkController {
+public class BongoNetworkController {
   
   private let session = URLSession.shared
   private let jsonDecoder = JSONDecoder()
   
-  func stops() -> [Stop] {
+  public func stops() -> [Stop] {
     return fetch(fromUrl: BongoURL.stopList.url)
   }
   
-  func predictions(forStopNumber stopNumber: Int, inTimeInterval interval: Int = 60) -> [Prediction] {
+  public func predictions(forStopNumber stopNumber: Int, inTimeInterval interval: Int = 60) -> [Prediction] {
     return fetch(fromUrl: BongoURL.predictions(stopNumber).url).filter { $0.minutes < interval }
   }
   
