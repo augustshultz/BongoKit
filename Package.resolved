@@ -1,0 +1,16 @@
+{
+  "object": {
+    "pins": [
+      {
+        "package": "CommandKit",
+        "repositoryURL": "https://github.com/augustshultz/CommandKit.git",
+        "state": {
+          "branch": null,
+          "revision": "329a02186233279b0df1bd732135f19ea1a085de",
+          "version": "0.2.2"
+        }
+      }
+    ]
+  },
+  "version": 1
+}
