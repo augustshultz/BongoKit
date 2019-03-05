@@ -11,6 +11,15 @@ final class BongoKitTests: XCTestCase {
     
     XCTAssertEqual(prediction!.name, "Lantern Park")
   }
+  
+  func testDecodingRounte() {
+    let json = "{\"id\":2339,\"name\":\"Court Hill\",\"shortname\":\"courthill\",\"color\":\"#3A2445\",\"agency\":\"iowacity\",\"agencyname\":\"Iowa City Transit\"}"
+    
+    let jsonDecoder = JSONDecoder()
+    let route: Route? = try? jsonDecoder.decode(Route.self, from: json.data(using: .utf8)!)
+    
+    XCTAssertEqual(route!.shortName, "courthill")
+  }
 
     static var allTests = [
         ("testExample", testDecodePrediction)
