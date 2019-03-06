@@ -6,19 +6,19 @@ import Foundation
 import NetworkKit
 
 public class BongoNetworkController {
-  
+
   private let session = URLSession.shared
   private let jsonDecoder = JSONDecoder()
-  
+
   public init() {}
-  
+
   public func stops() -> [Stop] {
 
     let stops: [Stop] = fetch(fromUrl: BongoURL.stopList.url)
 
     return stops
   }
-  
+
   public func predictions(forStopNumber stopNumber: Int, inTimeInterval interval: Int = 60) -> [Prediction] {
 
     let predictions: [Prediction] = fetch(fromUrl: BongoURL.predictions(stopNumber).url)
@@ -26,7 +26,7 @@ public class BongoNetworkController {
 
     return predictionsInTimeInterval
   }
-  
+
   private func decode<T: Decodable>(fromData data: Data) -> [T] {
 
     var decoded: [T] = []
@@ -39,7 +39,7 @@ public class BongoNetworkController {
 
     return decoded
   }
-  
+
   private func fetch<T: Decodable>(fromUrl url: URL) -> [T] {
 
     let response = session.synchronousDataTask(with: url)
