@@ -3,5 +3,6 @@ import XCTest
 import BongoKitTests
 
 var tests = [XCTestCaseEntry]()
-tests += BongoKitTests.allTests()
+tests += BongoKitTests.__allTests()
+
 XCTMain(tests)
