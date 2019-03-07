@@ -23,5 +23,4 @@ class RouteTest: XCTestCase {
   func testShortNameDecode() {
     XCTAssertEqual(route?.shortName, "courthill")
   }
-
 }
