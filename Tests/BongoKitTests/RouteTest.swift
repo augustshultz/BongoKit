@@ -23,7 +23,7 @@ class RouteTest: XCTestCase {
   func testShortNameDecode() {
     XCTAssertEqual(route?.shortName, "courthill")
   }
-  
+
   func testAgencyNameDecode() {
     XCTAssertEqual(route?.agencyName, "Iowa City Transit")
   }
