@@ -27,4 +27,8 @@ class PredictionTest: XCTestCase {
   func testPredictionShortNameDecode() {
     XCTAssertEqual(prediction!.shortName, "lanternpark")
   }
+  
+  func testPredictionAdencyNameDecode() {
+    XCTAssertEqual(prediction!.agencyName, "Coralville Transit")
+  }
 }
