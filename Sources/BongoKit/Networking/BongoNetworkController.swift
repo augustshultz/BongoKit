@@ -12,16 +12,16 @@ public class BongoNetworkController {
 
   public init() {}
 
-  public func stops() -> [Stop] {
+  public func synchronouslyFetchStops() -> [Stop] {
 
-    let stops: [Stop] = fetch(fromUrl: BongoURL.stopList.url)
+    let stops: [Stop] = synchronouslyFetch(fromUrl: BongoURL.stopList.url)
 
     return stops
   }
 
-  public func predictions(forStopNumber stopNumber: Int, inTimeInterval interval: Int = 60) -> [Prediction] {
+  public func synchronouslyFetchPredictions(forStopNumber stopNumber: Int, inTimeInterval interval: Int = 60) -> [Prediction] {
 
-    let predictions: [Prediction] = fetch(fromUrl: BongoURL.predictions(stopNumber).url)
+    let predictions: [Prediction] = synchronouslyFetch(fromUrl: BongoURL.predictions(stopNumber).url)
     let predictionsInTimeInterval = predictions.filter { $0.minutes < interval }
 
     return predictionsInTimeInterval
@@ -40,7 +40,7 @@ public class BongoNetworkController {
     return decoded
   }
 
-  private func fetch<T: Decodable>(fromUrl url: URL) -> [T] {
+  private func synchronouslyFetch<T: Decodable>(fromUrl url: URL) -> [T] {
 
     let response = session.synchronousDataTask(with: url)
     let decodedResponse: [T] = decode(fromData: response.0!)

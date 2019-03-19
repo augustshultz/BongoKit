@@ -10,7 +10,7 @@ class BongoNetworkControllerTest: XCTestCase {
   let networkController = BongoNetworkController()
 
   func testStops() {
-    let stops = networkController.stops()
+    let stops = networkController.synchronouslyFetchStops()
 
     XCTAssertTrue(!stops.isEmpty)
   }
