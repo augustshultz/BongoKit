@@ -13,10 +13,7 @@ public class BongoNetworkController {
   public init() {}
 
   public func synchronouslyFetchStops() -> [Stop] {
-
-    let stops: [Stop] = synchronouslyFetch(fromUrl: BongoURL.stopList.url)
-
-    return stops
+    return synchronouslyFetch(fromUrl: BongoURL.stopList.url)
   }
 
   public func synchronouslyFetchPredictions(forStopNumber stopNumber: Int, inTimeInterval interval: Int = 60) -> [Prediction] {
