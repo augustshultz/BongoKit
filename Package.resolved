@@ -2,6 +2,15 @@
   "object": {
     "pins": [
       {
+        "package": "Codextended",
+        "repositoryURL": "https://github.com/JohnSundell/Codextended",
+        "state": {
+          "branch": null,
+          "revision": "853ebe79faac6a0667bdf5e075ddceebedb0f374",
+          "version": "0.2.0"
+        }
+      },
+      {
         "package": "NetworkKit",
         "repositoryURL": "https://github.com/augustshultz/NetworkKit.git",
         "state": {
