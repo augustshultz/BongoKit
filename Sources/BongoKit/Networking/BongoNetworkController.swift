@@ -39,7 +39,7 @@ public class BongoNetworkController {
     dataTask.resume()
   }
   
-  public func fetchPredictions(forStopNumber stopNumber: Int, _ result: @escaping (Result<[Prediction],Error>) -> Void) {
+  public func fetchPredictions(forStopNumber stopNumber: Int, inTimeInterval interval: Int = 60, _ result: @escaping (Result<[Prediction],Error>) -> Void) {
     let dataTask = session.dataTask(with: BongoURL.predictions(stopNumber).url) { (data, response, error) in
       if let error = error {
         result(.failure(error))
@@ -52,7 +52,7 @@ public class BongoNetworkController {
       do {
         let decoder = JSONDecoder()
         let predictions = try decoder.decode([Prediction].self, from: data)
-        result(.success(predictions))
+        result(.success(predictions.filter { $0.minutes <= interval }))
       } catch let error {
         result(.failure(error))
         return
