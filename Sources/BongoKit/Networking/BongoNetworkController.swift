@@ -4,7 +4,6 @@
 
 import Foundation
 import NetworkKit
-import Codextended
 
 public enum StopsError: Error {
   case failedToFetchStops
@@ -31,7 +30,9 @@ public class BongoNetworkController {
         return
       }
       do {
-        result(.success(try data.decoded() as [Stop]))
+        let decoder = JSONDecoder()
+        let stops = try decoder.decode([Stop].self, from: data)
+        result(.success(stops))
       } catch let error as NSError {
         result(.failure(error))
       }
@@ -47,9 +48,13 @@ public class BongoNetworkController {
 
   private func synchronouslyFetch<T: Decodable>(fromUrl url: URL) -> [T] {
     let response = session.synchronousDataTask(with: url)
+    guard let data = response.0 else {
+      return []
+    }
     var decodedResponse: [T] = []
     do {
-      decodedResponse = try response.0!.decoded() as [T]
+      let decoder = JSONDecoder()
+      decodedResponse = try decoder.decode([T].self, from: data)
     } catch let error as NSError {
       print("\(error)")
     }
