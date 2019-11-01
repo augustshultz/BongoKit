@@ -8,12 +8,6 @@ import XCTest
 class BongoNetworkControllerTest: XCTestCase {
 
   let networkController = BongoNetworkController()
-
-  func testStops() {
-    let stops = networkController.synchronouslyFetchStops()
-
-    XCTAssertTrue(!stops.isEmpty)
-  }
   
   func testFetchStops() {
     let semaphore = DispatchSemaphore(value: 0)
