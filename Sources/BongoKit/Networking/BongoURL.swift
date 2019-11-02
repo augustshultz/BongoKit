@@ -25,7 +25,7 @@ public enum BongoURL {
     case .predictions(let stopId):
       return "predictions/\(stopId)"
     case .stopList:
-      return "stops"
+      return "stops/"
     case .stopInfo(let stopId):
       return "stops/\(stopId)"
     case .buses(let routeId):
