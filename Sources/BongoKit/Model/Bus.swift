@@ -4,13 +4,13 @@
 
 import Foundation
 
-public struct Bus {
-  public let id: Int
-  public let latitude: Int
-  public let longitude: Int
-  public let heading: Int
+public struct Bus: Decodable {
+  public let busId: Int
+  public let latitude: Double
+  public let longitude: Double
+  public let heading: Double
 
-  private  enum CodingKeys: String, CodingKey {
-    case id, latitude = "lat", longitude = "lon", heading
+  private enum CodingKeys: String, CodingKey {
+    case busId = "id", latitude = "lat", longitude = "lon", heading
   }
 }
