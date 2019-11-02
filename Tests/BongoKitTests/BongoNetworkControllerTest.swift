@@ -10,7 +10,7 @@ class BongoNetworkControllerTest: XCTestCase {
   let networkController = BongoNetworkController()
 
   func testFetchStops() {
-    let semaphore = DispatchSemaphore(value: 0)
+    let fetchStopsExpectation = expectation(description: "wait for stops to be fetched")
     networkController.fetchStops { (result) in
       switch result {
       case .success(let stops):
@@ -18,8 +18,10 @@ class BongoNetworkControllerTest: XCTestCase {
       case .failure:
         XCTFail("Fetch failed")
       }
-      semaphore.signal()
+        fetchStopsExpectation.fulfill()
     }
-    _ = semaphore.wait(timeout: .distantFuture)
+    waitForExpectations(timeout: 1) { (error) in
+        XCTAssertNil(error)
+    }
   }
 }
