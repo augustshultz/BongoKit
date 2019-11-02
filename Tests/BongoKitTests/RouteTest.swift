@@ -32,4 +32,34 @@ class RouteTest: XCTestCase {
   func testAgencyNameDecode() {
     XCTAssertEqual(route?.agencyName, "Iowa City Transit")
   }
+
+    func testDecodingMultipleRoutesFromJSON() {
+        do {
+            let actualRoutes = try jsonDecoder.decode([Route].self, from: multipleRoutesJson.data(using: .utf8)!)
+            XCTAssert(actualRoutes.count == 2)
+        } catch let error {
+            XCTFail(error.localizedDescription)
+        }
+    }
 }
+
+let multipleRoutesJson = """
+[
+    {
+        "id": 2336,
+        "name": "7th Avenue",
+        "shortname": "7thave",
+        "color": "#FFC53D",
+        "agency": "iowacity",
+        "agencyname": "Iowa City Transit"
+    },
+    {
+        "id": 2337,
+        "name": "Broadway",
+        "shortname": "brdwy",
+        "color": "#127AE3",
+        "agency": "iowacity",
+        "agencyname": "Iowa City Transit"
+    }
+]
+"""
