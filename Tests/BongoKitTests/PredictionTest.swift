@@ -5,7 +5,7 @@
 import XCTest
 @testable import BongoKit
 
-let json = """
+private let json = """
 {
     "routeid":2326,
     "name":"Lantern Park",

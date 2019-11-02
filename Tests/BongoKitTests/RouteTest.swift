@@ -7,17 +7,6 @@ import XCTest
 
 class RouteTest: XCTestCase {
 
-  let json = """
-{
-    "id": 2339,
-    "name": "Court Hill",
-    "shortname": "courthill",
-    "color": "#3A2445",
-    "agency": "iowacity",
-    "agencyname": "Iowa City Transit"
-}
-"""
-
   let jsonDecoder = JSONDecoder()
   var route: Route?
 
@@ -43,7 +32,18 @@ class RouteTest: XCTestCase {
     }
 }
 
-let multipleRoutesJson = """
+private let json = """
+{
+    "id": 2339,
+    "name": "Court Hill",
+    "shortname": "courthill",
+    "color": "#3A2445",
+    "agency": "iowacity",
+    "agencyname": "Iowa City Transit"
+}
+"""
+
+private let multipleRoutesJson = """
 [
     {
         "id": 2336,

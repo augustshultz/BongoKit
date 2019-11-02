@@ -20,7 +20,7 @@ class BusTests: XCTestCase {
 
 }
 
-let busJson = """
+private let busJson = """
 {
     "id": 2915,
     "lat": 41.66259576280344,
