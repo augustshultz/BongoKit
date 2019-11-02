@@ -5,19 +5,27 @@
 import XCTest
 @testable import BongoKit
 
+let json = """
+{
+    "routeid":2326,
+    "name":"Lantern Park",
+    "shortname":"lanternpark",
+    "busid":3274,
+    "busnumber":"114",
+    "seconds":707,
+    "minutes":12,
+    "agency":"coralville",
+    "agencyname":"Coralville Transit"
+}
+"""
+
 class PredictionTest: XCTestCase {
 
-  let json = "{\"routeid\":2326,\"name\":\"Lantern Park\",\"shortname\":\"lanternpark\",\"busid\":3274,\"busnumber\":\"114\",\"seconds\":707,\"minutes\":12,\"agency\":\"coralville\",\"agencyname\":\"Coralville Transit\"}"
   let jsonDecoder = JSONDecoder()
   var prediction: Prediction?
 
   override func setUp() {
-    // Put setup code here. This method is called before the invocation of each test method in the class.
     prediction = try? jsonDecoder.decode(Prediction.self, from: json.data(using: .utf8)!)
-  }
-
-  override func tearDown() {
-    // Put teardown code here. This method is called after the invocation of each test method in the class.
   }
 
   func testPredictionNameDecode() {
@@ -27,7 +35,7 @@ class PredictionTest: XCTestCase {
   func testPredictionShortNameDecode() {
     XCTAssertEqual(prediction!.shortName, "lanternpark")
   }
-  
+
   func testPredictionAdencyNameDecode() {
     XCTAssertEqual(prediction!.agencyName, "Coralville Transit")
   }

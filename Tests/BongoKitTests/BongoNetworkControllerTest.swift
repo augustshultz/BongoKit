@@ -8,15 +8,15 @@ import XCTest
 class BongoNetworkControllerTest: XCTestCase {
 
   let networkController = BongoNetworkController()
-  
+
   func testFetchStops() {
     let semaphore = DispatchSemaphore(value: 0)
     networkController.fetchStops { (result) in
       switch result {
       case .success(let stops):
         XCTAssertTrue(!stops.isEmpty)
-      case .failure(_):
-        XCTFail()
+      case .failure:
+        XCTFail("Fetch failed")
       }
       semaphore.signal()
     }
