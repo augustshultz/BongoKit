@@ -5,12 +5,12 @@
 import Foundation
 
 public struct Bus: Decodable {
-  public let busId: Int
+  public let id: Int
   public let latitude: Double
   public let longitude: Double
   public let heading: Double
 
   private enum CodingKeys: String, CodingKey {
-    case busId = "id", latitude = "lat", longitude = "lon", heading
+    case id, latitude = "lat", longitude = "lon", heading
   }
 }

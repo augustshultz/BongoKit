@@ -12,7 +12,7 @@ class BusTests: XCTestCase {
         let decoder = JSONDecoder()
         do {
             let actual = try decoder.decode(Bus.self, from: busJson.data(using: .utf8)!)
-            XCTAssertEqual(actual.busId, 2915)
+            XCTAssertEqual(actual.id, 2915)
         } catch let error {
             XCTFail(error.localizedDescription)
         }
