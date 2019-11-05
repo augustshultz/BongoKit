@@ -14,9 +14,11 @@ public enum PredictionsError: Error {
 
 public class BongoNetworkController {
 
-  private let session = URLSession.shared
+    private let session: URLSession
 
-  public init() {}
+    public init(session: URLSession = URLSession.shared) {
+        self.session = session
+    }
 
   public func fetchStops(_ result: @escaping (Result<[Stop], Error>) -> Void) {
     let dataTask = session.dataTask(with: BongoURL.stopList.url) { (data, _, error) in
