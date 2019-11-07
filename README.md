@@ -1,6 +1,6 @@
 # BongoKit
 
-A library to help manage interacting with the Bongo API.
+A library to manage interactions with the Bongo API.
 
 ## API
 
