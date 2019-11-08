@@ -6,20 +6,18 @@
 import Foundation
 
 class MockURLSession: URLSession {
-  var cachedUrl: URL?
-  private let mockDockTask: MockDataTask
+    var cachedUrl: URL?
+    private let mockDockTask: MockDataTask
 
-  init(data: Data?, urlResponse: URLResponse?, error: Error?) {
-    mockDockTask = MockDataTask(data: data, urlResponse: urlResponse, error: error)
-  }
+    init(data: Data?, urlResponse: URLResponse?, error: Error?) {
 
-  override func dataTask(
-    with url: URL,
-    completionHandler: @escaping (Data?, URLResponse?, Error?
-  ) -> Void) -> URLSessionDataTask {
+        mockDockTask = MockDataTask(data: data, urlResponse: urlResponse, error: error)
+    }
 
-    self.cachedUrl = url
-    mockDockTask.completionHandler = completionHandler
-    return mockDockTask
-  }
+    override func dataTask(with url: URL, completionHandler: @escaping (Data?, URLResponse?, Error?) -> Void) -> URLSessionDataTask {
+
+        self.cachedUrl = url
+        mockDockTask.completionHandler = completionHandler
+        return mockDockTask
+    }
 }

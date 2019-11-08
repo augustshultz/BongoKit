@@ -9,6 +9,7 @@ import XCTest
 class StopTests: XCTestCase {
 
     func testDecodeSingleJsonStop() {
+
         do {
             let decoder = JSONDecoder()
             let actual = try decoder.decode(Stop.self, from: singleStopJson.data(using: .utf8)!)
@@ -22,6 +23,7 @@ class StopTests: XCTestCase {
     }
 
     func testDecodeMultipleJsonStops() {
+
         do {
             let decoder = JSONDecoder()
             let actual = try decoder.decode([Stop].self, from: multiStopJson.data(using: .utf8)!)
@@ -33,27 +35,27 @@ class StopTests: XCTestCase {
 }
 
 private let singleStopJson = """
-{
-    "id": "1",
-    "name": "Downtown Interchange",
-    "lat": 41.660199,
-    "lon": -91.535049
-}
-"""
+                             {
+                                 "id": "1",
+                                 "name": "Downtown Interchange",
+                                 "lat": 41.660199,
+                                 "lon": -91.535049
+                             }
+                             """
 
 private let multiStopJson = """
-[
-    {
-        "id": "1",
-        "name": "Downtown Interchange",
-        "lat": 41.660199,
-        "lon": -91.535049
-    },
-    {
-        "id": "2",
-        "name": "Downtown Interchange",
-        "lat": 41.660103,
-        "lon": -91.53553599999998
-    }
-]
-"""
+                            [
+                                {
+                                    "id": "1",
+                                    "name": "Downtown Interchange",
+                                    "lat": 41.660199,
+                                    "lon": -91.535049
+                                },
+                                {
+                                    "id": "2",
+                                    "name": "Downtown Interchange",
+                                    "lat": 41.660103,
+                                    "lon": -91.53553599999998
+                                }
+                            ]
+                            """

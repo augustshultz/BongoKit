@@ -9,6 +9,7 @@ import XCTest
 class BusTests: XCTestCase {
 
     func testDecodeBusJson() {
+
         let decoder = JSONDecoder()
         do {
             let actual = try decoder.decode(Bus.self, from: busJson.data(using: .utf8)!)
@@ -21,10 +22,10 @@ class BusTests: XCTestCase {
 }
 
 private let busJson = """
-{
-    "id": 2915,
-    "lat": 41.66259576280344,
-    "lon": -91.53460014176162,
-    "heading": 181.31683011701875
-}
-"""
+                      {
+                          "id": 2915,
+                          "lat": 41.66259576280344,
+                          "lon": -91.53460014176162,
+                          "heading": 181.31683011701875
+                      }
+                      """
