@@ -11,7 +11,7 @@ class RoutesTest: XCTestCase {
 
         let bundle = Bundle(for: type(of: self))
 
-        guard let url = bundle.url(forResource: "routes", withExtension: "json"), let jsonData = try? Data(contentsOf: url, options: .uncached) else {
+        guard let url = bundle.url(forResource: "routes", withExtension: "json"), let jsonData = try? Data(contentsOf: url) else {
             XCTFail("Could not get file data")
             fatalError()
         }
@@ -19,7 +19,7 @@ class RoutesTest: XCTestCase {
         let mockSession = MockURLSession(data: jsonData, urlResponse: nil, error: nil)
         let networkController = BongoNetworkController(session: mockSession)
         let fetchRoutesExpectation = expectation(description: "wait for predictions to be fetched")
-        networkController.fetchRoutes() { (result) in
+        networkController.fetchRoutes { (result) in
             switch result {
             case .success(let routes):
                 XCTAssertTrue(!routes.isEmpty)

@@ -5,11 +5,11 @@
 import XCTest
 @testable import BongoKit
 
-class BongoNetworkControllerTest: XCTestCase {
+class StopsTest: XCTestCase {
 
     func testFetchStops() {
 
-        guard let jsonData = stops.data(using: .utf8) else {
+        guard let jsonDataUrl = Bundle(for: type(of: self)).url(forResource: "stops", withExtension: "json"), let jsonData = try? Data(contentsOf: jsonDataUrl) else {
             fatalError("Could not convert string contents into data")
         }
         let mockSession = MockURLSession(data: jsonData, urlResponse: nil, error: nil)
@@ -30,26 +30,3 @@ class BongoNetworkControllerTest: XCTestCase {
         }
     }
 }
-
-private let stops = """
-                    [
-                      {
-                        "id": "1",
-                        "name": "Downtown Interchange",
-                        "lat": 41.660199,
-                        "lon": -91.535049
-                      },
-                      {
-                        "id": "2",
-                        "name": "Downtown Interchange",
-                        "lat": 41.660103,
-                        "lon": -91.53553599999998
-                      },
-                      {
-                        "id": "100",
-                        "name": "Softball Complex",
-                        "lat": 41.6687,
-                        "lon": -91.56510000000004
-                      }
-                    ]
-                    """
