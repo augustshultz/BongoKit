@@ -25,14 +25,10 @@ class RouteTest: XCTestCase {
         XCTAssertEqual(route?.agencyName, "Iowa City Transit")
     }
 
-    func testDecodingMultipleRoutesFromJSON() {
+    func testDecodingMultipleRoutesFromJSON() throws {
 
-        do {
-            let actualRoutes = try jsonDecoder.decode([Route].self, from: multipleRoutesJson.data(using: .utf8)!)
-            XCTAssert(actualRoutes.count == 2)
-        } catch let error {
-            XCTFail(error.localizedDescription)
-        }
+        let actualRoutes = try jsonDecoder.decode([Route].self, from: multipleRoutesJson.data(using: .utf8)!)
+        XCTAssert(actualRoutes.count == 2)
     }
 }
 

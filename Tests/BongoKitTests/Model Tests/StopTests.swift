@@ -8,29 +8,21 @@ import XCTest
 
 class StopTests: XCTestCase {
 
-    func testDecodeSingleJsonStop() {
+    let decoder = JSONDecoder()
 
-        do {
-            let decoder = JSONDecoder()
-            let actual = try decoder.decode(Stop.self, from: singleStopJson.data(using: .utf8)!)
-            XCTAssertEqual(actual.stopId, "1")
-            XCTAssertEqual(actual.name, "Downtown Interchange")
-            XCTAssertEqual(actual.lat, 41.660199)
-            XCTAssertEqual(actual.lon, -91.535049)
-        } catch let error {
-            XCTFail(error.localizedDescription)
-        }
+    func testDecodeSingleJsonStop() throws {
+
+        let actual = try decoder.decode(Stop.self, from: singleStopJson.data(using: .utf8)!)
+        XCTAssertEqual(actual.stopId, "1")
+        XCTAssertEqual(actual.name, "Downtown Interchange")
+        XCTAssertEqual(actual.lat, 41.660199)
+        XCTAssertEqual(actual.lon, -91.535049)
     }
 
-    func testDecodeMultipleJsonStops() {
+    func testDecodeMultipleJsonStops() throws {
 
-        do {
-            let decoder = JSONDecoder()
-            let actual = try decoder.decode([Stop].self, from: multiStopJson.data(using: .utf8)!)
-            XCTAssertEqual(actual.count, 2)
-        } catch let error {
-            XCTFail(error.localizedDescription)
-        }
+        let actual = try decoder.decode([Stop].self, from: multiStopJson.data(using: .utf8)!)
+        XCTAssertEqual(actual.count, 2)
     }
 }
 
