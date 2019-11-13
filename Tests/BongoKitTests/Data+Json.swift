@@ -5,7 +5,7 @@
 import Foundation
 
 extension Data {
-    init(dataFromJsonFileNamed fileName: String, forBundle bundle: Bundle) throws {
+    init(fromJsonFileNamed fileName: String, forBundle bundle: Bundle) throws {
         guard let url = bundle.url(forResource: fileName, withExtension: "json") else {
             throw JsonDataError.couldNotFindFile
         }
