@@ -8,7 +8,6 @@ import XCTest
 class StopsTest: XCTestCase {
 
     func testFetchStops() {
-
         guard let jsonDataUrl = Bundle(for: type(of: self)).url(forResource: "stops", withExtension: "json"), let jsonData = try? Data(contentsOf: jsonDataUrl) else {
             fatalError("Could not convert string contents into data")
         }

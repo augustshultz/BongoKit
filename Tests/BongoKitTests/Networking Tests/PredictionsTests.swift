@@ -8,7 +8,6 @@ import XCTest
 class PredictionsTests: XCTestCase {
 
     func testFetchPredictions() {
-
         guard let predictionsJsonUrl = Bundle(for: type(of: self)).url(forResource: "predictions", withExtension: "json"),
               let jsonData = try? Data(contentsOf: predictionsJsonUrl) else {
             fatalError("Could not convert string contents into data")

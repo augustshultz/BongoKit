@@ -8,7 +8,6 @@ import XCTest
 class BongoURLTests: XCTestCase {
 
     func testRouteInfoURL() {
-
         guard let expectedUrl = URL(string: "https://api.bongo.org/routes/1") else {
             XCTFail("Invalid url")
             return
@@ -18,7 +17,6 @@ class BongoURLTests: XCTestCase {
     }
 
     func testRouteListURL() {
-
         guard let expectedUrl = URL(string: "https://api.bongo.org/routes/") else {
             XCTFail("Invalid url")
             return
@@ -28,7 +26,6 @@ class BongoURLTests: XCTestCase {
     }
 
     func testPredictionsURL() {
-
         guard let expectedUrl = URL(string: "https://api.bongo.org/predictions/1") else {
             XCTFail("Invalid url")
             return
@@ -38,7 +35,6 @@ class BongoURLTests: XCTestCase {
     }
 
     func testStopListURL() {
-
         guard let expectedUrl = URL(string: "https://api.bongo.org/stops/") else {
             XCTFail("Invalid url")
             return
@@ -48,7 +44,6 @@ class BongoURLTests: XCTestCase {
     }
 
     func testStopInfoURL() {
-
         guard let expectedUrl = URL(string: "https://api.bongo.org/stops/1") else {
             XCTFail("Invalid url")
             return
@@ -58,7 +53,6 @@ class BongoURLTests: XCTestCase {
     }
 
     func testBusesURL() {
-
         guard let expectedUrl = URL(string: "https://api.bongo.org/buses/1") else {
             XCTFail("Invalid url")
             return

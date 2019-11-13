@@ -14,7 +14,6 @@ class MockDataTask: URLSessionDataTask {
     var completionHandler: ((Data?, URLResponse?, Error?) -> Void)?
 
     init(data: Data?, urlResponse: URLResponse?, error: Error?) {
-
         self.data = data
         self.urlResponse = urlResponse
         mockError = error
@@ -22,7 +21,6 @@ class MockDataTask: URLSessionDataTask {
     }
 
     override func resume() {
-
         DispatchQueue.main.async {
             self.completionHandler?(self.data, self.urlResponse, self.mockError)
         }

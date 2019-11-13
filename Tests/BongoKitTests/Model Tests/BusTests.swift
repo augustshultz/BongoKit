@@ -9,12 +9,10 @@ import XCTest
 class BusTests: XCTestCase {
 
     func testDecodeBusJson() throws {
-
         let decoder = JSONDecoder()
         let actual = try decoder.decode(Bus.self, from: busJson.data(using: .utf8)!)
         XCTAssertEqual(actual.id, 2915)
     }
-
 }
 
 private let busJson = """

@@ -17,12 +17,10 @@ public class BongoNetworkController {
     private let session: URLSession
 
     public init(session: URLSession = URLSession.shared) {
-
         self.session = session
     }
 
     public func fetchStops(_ result: @escaping (Result<[Stop], Error>) -> Void) {
-
         let dataTask = session.dataTask(with: BongoURL.stopList.url) { (data, _, error) in
             if let error = error {
                 result(.failure(error))
@@ -44,7 +42,6 @@ public class BongoNetworkController {
     }
 
     public func fetchPredictions(forStopNumber stopNumber: Int, inTimeInterval interval: Int = 60, _ result: @escaping (Result<[Prediction], Error>) -> Void) {
-
         let dataTask = session.dataTask(with: BongoURL.predictions(stopNumber).url) { (data, _, error) in
             if let error = error {
                 result(.failure(error))

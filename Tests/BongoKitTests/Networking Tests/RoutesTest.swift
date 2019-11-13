@@ -8,7 +8,6 @@ import XCTest
 class RoutesTest: XCTestCase {
 
     func testFetchRoutes() throws {
-
         let bundle = Bundle(for: type(of: self))
         let json = try Data(fromJsonFileNamed: "routes", forBundle: bundle)
         let mockSession = MockURLSession(data: json, urlResponse: nil, error: nil)

@@ -25,22 +25,18 @@ class PredictionTest: XCTestCase {
     var prediction: Prediction?
 
     override func setUp() {
-
         prediction = try? jsonDecoder.decode(Prediction.self, from: json.data(using: .utf8)!)
     }
 
     func testPredictionNameDecode() {
-
         XCTAssertEqual(prediction!.name, "Lantern Park")
     }
 
     func testPredictionShortNameDecode() {
-
         XCTAssertEqual(prediction!.shortName, "lanternpark")
     }
 
     func testPredictionAdencyNameDecode() {
-
         XCTAssertEqual(prediction!.agencyName, "Coralville Transit")
     }
 }

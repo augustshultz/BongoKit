@@ -11,7 +11,6 @@ class StopTests: XCTestCase {
     let decoder = JSONDecoder()
 
     func testDecodeSingleJsonStop() throws {
-
         let actual = try decoder.decode(Stop.self, from: singleStopJson.data(using: .utf8)!)
         XCTAssertEqual(actual.stopId, "1")
         XCTAssertEqual(actual.name, "Downtown Interchange")
@@ -20,7 +19,6 @@ class StopTests: XCTestCase {
     }
 
     func testDecodeMultipleJsonStops() throws {
-
         let actual = try decoder.decode([Stop].self, from: multiStopJson.data(using: .utf8)!)
         XCTAssertEqual(actual.count, 2)
     }
