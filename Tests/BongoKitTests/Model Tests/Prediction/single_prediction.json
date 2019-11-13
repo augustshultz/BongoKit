@@ -1,0 +1,11 @@
+{
+  "routeid": 2326,
+  "name": "Lantern Park",
+  "shortname": "lanternpark",
+  "busid": 3274,
+  "busnumber": "114",
+  "seconds": 707,
+  "minutes": 12,
+  "agency": "coralville",
+  "agencyname": "Coralville Transit"
+}
