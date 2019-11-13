@@ -1,0 +1,18 @@
+[
+    {
+        "id": 2336,
+        "name": "7th Avenue",
+        "shortname": "7thave",
+        "color": "#FFC53D",
+        "agency": "iowacity",
+        "agencyname": "Iowa City Transit"
+    },
+    {
+        "id": 2337,
+        "name": "Broadway",
+        "shortname": "brdwy",
+        "color": "#127AE3",
+        "agency": "iowacity",
+        "agencyname": "Iowa City Transit"
+    }
+]
