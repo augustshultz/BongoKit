@@ -4,12 +4,8 @@
 
 import Foundation
 
-public enum StopsError: Error {
-    case failedToFetchStops
-}
-
-public enum PredictionsError: Error {
-    case failedToFetchPredictions
+public enum BongoError: Error {
+    case failedToFetchStops, failedToFetchPredictions, failedToFetchRoutes
 }
 
 public class BongoNetworkController {
@@ -27,7 +23,7 @@ public class BongoNetworkController {
                 return
             }
             guard let data = data else {
-                result(.failure(StopsError.failedToFetchStops))
+                result(.failure(BongoError.failedToFetchStops))
                 return
             }
             do {
@@ -48,7 +44,7 @@ public class BongoNetworkController {
                 return
             }
             guard let data = data else {
-                result(.failure(PredictionsError.failedToFetchPredictions))
+                result(.failure(BongoError.failedToFetchPredictions))
                 return
             }
             do {
@@ -72,7 +68,7 @@ public class BongoNetworkController {
                 return
             }
             guard let data = data else {
-                result(.failure(PredictionsError.failedToFetchPredictions))
+                result(.failure(BongoError.failedToFetchRoutes))
                 return
             }
             do {
