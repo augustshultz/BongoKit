@@ -27,4 +27,24 @@ class RoutesTest: XCTestCase {
             XCTAssertNil(error)
         }
     }
+
+    func testFetchRouteFails() throws {
+        let mockSession = MockURLSession(data: nil, urlResponse: nil, error: nil)
+        let networkController = BongoNetworkController(session: mockSession)
+        let failureExpectation = expectation(description: "wait for the failure")
+        networkController.fetchRoutes { (result) in
+            switch result {
+            case .success:
+                XCTFail("this should not succeed")
+            case .failure(let error):
+                guard let bongoError = error as? BongoError else {
+                    XCTFail("unexpected error type")
+                    fatalError()
+                }
+                XCTAssertEqual(bongoError, BongoError.failedToFetchRoutes)
+            }
+            failureExpectation.fulfill()
+        }
+        waitForExpectations(timeout: 1, handler: nil)
+    }
 }
