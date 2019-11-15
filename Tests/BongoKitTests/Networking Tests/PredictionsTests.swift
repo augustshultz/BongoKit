@@ -29,4 +29,25 @@ class PredictionsTests: XCTestCase {
             XCTAssertNil(error)
         }
     }
+
+    func testFetchPredictionsFailsToReturnData() {
+        let mockSession = MockURLSession(data: nil, urlResponse: nil, error: nil)
+        let networkController = BongoNetworkController(session: mockSession)
+        let fetchPredictionsExpectation = expectation(description: "wait for predictions to be fetched")
+        networkController.fetchPredictions(forStopNumber: 1) { (result) in
+            switch result {
+            case .success:
+                XCTFail("The test should have failed")
+            case .failure(let error):
+                guard let bongoError = error as? BongoError else {
+                    fatalError()
+                }
+                XCTAssertEqual(bongoError, BongoError.failedToFetchPredictions)
+            }
+            fetchPredictionsExpectation.fulfill()
+        }
+        waitForExpectations(timeout: 1) { (error) in
+            XCTAssertNil(error)
+        }
+    }
 }
