@@ -28,4 +28,26 @@ class StopsTest: XCTestCase {
             XCTAssertNil(error)
         }
     }
+
+    func testFetchStopsFailsWithoutData() {
+        let mockSession = MockURLSession(data: nil, urlResponse: nil, error: nil)
+        let networkController = BongoNetworkController(session: mockSession)
+        let fetchStopsExpectation = expectation(description: "wait for stops to be fetched")
+        networkController.fetchStops { (result) in
+            switch result {
+            case .success(_):
+                XCTFail("Fetch should not succeed")
+            case .failure(let error):
+                guard let bongoError = error as? BongoError else {
+                    XCTFail("The fetch error should be a BongoError")
+                    fatalError()
+                }
+                XCTAssertEqual(bongoError, BongoError.failedToFetchStops)
+            }
+            fetchStopsExpectation.fulfill()
+        }
+        waitForExpectations(timeout: 1) { (error) in
+            XCTAssertNil(error)
+        }
+    }
 }
