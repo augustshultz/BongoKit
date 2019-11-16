@@ -50,9 +50,7 @@ public class BongoNetworkController {
             do {
                 let decoder = JSONDecoder()
                 let predictions = try decoder.decode([Prediction].self, from: data)
-                result(.success(predictions.filter {
-                    $0.minutes <= interval
-                }))
+                result(.success(predictions.filter { $0.minutes <= interval }))
             } catch let error {
                 result(.failure(error))
                 return

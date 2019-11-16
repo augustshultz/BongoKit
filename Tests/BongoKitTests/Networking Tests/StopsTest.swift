@@ -35,7 +35,7 @@ class StopsTest: XCTestCase {
         let fetchStopsExpectation = expectation(description: "wait for stops to be fetched")
         networkController.fetchStops { (result) in
             switch result {
-            case .success(_):
+            case .success:
                 XCTFail("Fetch should not succeed")
             case .failure(let error):
                 guard let bongoError = error as? BongoError else {
