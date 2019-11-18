@@ -58,6 +58,10 @@ public class BongoNetworkController {
         }
         dataTask.resume()
     }
+    
+    public func fetchDetails(forRoute route: Int, _ result: @escaping (Result<RouteDetails, Error>) -> Void) {
+        
+    }
 
     public func fetchRoutes(_ result: @escaping (Result<[Route], Error>) -> Void) {
         let dataTask = session.dataTask(with: BongoURL.routeList.url) { (data, _, error) in
