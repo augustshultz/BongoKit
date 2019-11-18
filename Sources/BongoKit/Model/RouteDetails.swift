@@ -8,19 +8,23 @@ import MapKit
 public struct RouteDetails: Decodable {
     public let route: Route
     public let stops: [Stop]
-//    public let maxLatitude: CLLocationDegrees
-//    public let minLatitude: CLLocationDegrees
-//    public let maxLongitude: CLLocationDegrees
-//    public let minLongitude: CLLocationDegrees
+    public let maxLatitude: CLLocationDegrees
+    public let minLatitude: CLLocationDegrees
+    public let maxLongitude: CLLocationDegrees
+    public let minLongitude: CLLocationDegrees
 //    public let path: [CLLocationCoordinate2D]
     
     enum CodingKeys: String, CodingKey {
-        case route, stops
+        case route, stops, maxLatitude = "maxlat", minLatitude = "minlat", maxLongitude = "maxlon", minLongitude = "minlon"
     }
 
     public init(from decoder: Decoder) throws {
         route = try Route(from: decoder)
         let container = try decoder.container(keyedBy: CodingKeys.self)
         stops = try container.decode([Stop].self, forKey: .stops)
+        maxLatitude = try container.decode(CLLocationDegrees.self, forKey: .maxLatitude)
+        minLatitude = try container.decode(CLLocationDegrees.self, forKey: .minLatitude)
+        maxLongitude = try container.decode(CLLocationDegrees.self, forKey: .maxLongitude)
+        minLongitude = try container.decode(CLLocationDegrees.self, forKey: .minLongitude)
     }
 }
