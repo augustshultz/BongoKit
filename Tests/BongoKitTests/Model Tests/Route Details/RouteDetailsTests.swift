@@ -35,4 +35,10 @@ class RouteDetailsTests: XCTestCase {
             XCTFail(error.localizedDescription)
         }
     }
+    
+    func testPathDecoded() throws {
+        let data = try Data(fromJsonFileNamed: "single_route_details", forBundle: Bundle(for: type(of: self)))
+        let routeDetails = try JSONDecoder().decode(RouteDetails.self, from: data)
+        XCTAssertGreaterThan(routeDetails.path.count, 0)
+    }
 }
