@@ -47,22 +47,22 @@ class RoutesTest: XCTestCase {
         }
         waitForExpectations(timeout: 1, handler: nil)
     }
-    
-//    func testFetchRouteInfo() throws {
-//        let bundle = Bundle(for: type(of: self))
-//        let json = try Data(fromJsonFileNamed: "route_detail", forBundle: bundle)
-//        let mockSession = MockURLSession(data: json, urlResponse: nil, error: nil)
-//        let networkController = BongoNetworkController(session: mockSession)
-//        let fetchDetailsExpectation = expectation(description: "wait for predictions to be fetched")
-//        networkController.fetchDetails(forRoute: 2355) { (result) in
-//            switch result {
-//            case .success(let routeDetails):
-//                XCTAssertGreaterThan(routeDetails.stops.count, 0)
-//            case .failure:
-//                XCTFail("Fetch failed")
-//            }
-//            fetchDetailsExpectation.fulfill()
-//        }
-//        waitForExpectations(timeout: 1)
-//    }
+
+    func testFetchRouteInfo() throws {
+        let bundle = Bundle(for: type(of: self))
+        let json = try Data(fromJsonFileNamed: "route_detail", forBundle: bundle)
+        let mockSession = MockURLSession(data: json, urlResponse: nil, error: nil)
+        let networkController = BongoNetworkController(session: mockSession)
+        let fetchDetailsExpectation = expectation(description: "wait for predictions to be fetched")
+        networkController.fetchDetails(forRoute: 2355) { (result) in
+            switch result {
+            case .success(let routeDetails):
+                XCTAssertGreaterThan(routeDetails.stops.count, 0)
+            case .failure:
+                XCTFail("Fetch failed")
+            }
+            fetchDetailsExpectation.fulfill()
+        }
+        waitForExpectations(timeout: 1)
+    }
 }

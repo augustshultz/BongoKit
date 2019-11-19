@@ -5,7 +5,7 @@
 import Foundation
 
 public enum BongoError: Error {
-    case failedToFetchStops, failedToFetchPredictions, failedToFetchRoutes
+    case failedToFetchStops, failedToFetchPredictions, failedToFetchRoutes, failedToFetchRouteDetails
 }
 
 public class BongoNetworkController {
@@ -58,9 +58,27 @@ public class BongoNetworkController {
         }
         dataTask.resume()
     }
-    
+
     public func fetchDetails(forRoute route: Int, _ result: @escaping (Result<RouteDetails, Error>) -> Void) {
-        
+        let dataTask = session.dataTask(with: BongoURL.routeInfo(route).url) { (data, _, error) in
+            if let error = error {
+                result(.failure(error))
+                return
+            }
+            guard let data = data else {
+                result(.failure(BongoError.failedToFetchRouteDetails))
+                return
+            }
+            do {
+                let decoder = JSONDecoder()
+                let routeDetails = try decoder.decode(RouteDetails.self, from: data)
+                result(.success(routeDetails))
+            } catch let error {
+                result(.failure(error))
+                return
+            }
+        }
+        dataTask.resume()
     }
 
     public func fetchRoutes(_ result: @escaping (Result<[Route], Error>) -> Void) {

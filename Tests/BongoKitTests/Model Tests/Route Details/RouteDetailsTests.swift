@@ -12,7 +12,7 @@ class RouteDetailsTests: XCTestCase {
         let routeDetails = try JSONDecoder().decode(RouteDetails.self, from: data)
         XCTAssertEqual(routeDetails.route.routeId, 2355)
     }
-    
+
     func testStopsDecoded() throws {
         do {
             let data = try Data(fromJsonFileNamed: "single_route_details", forBundle: Bundle(for: type(of: self)))
@@ -22,7 +22,7 @@ class RouteDetailsTests: XCTestCase {
             XCTFail(error.localizedDescription)
         }
     }
-    
+
     func testMaxMinLatitudeLongitudeDecoded() throws {
         do {
             let data = try Data(fromJsonFileNamed: "single_route_details", forBundle: Bundle(for: type(of: self)))
@@ -35,7 +35,7 @@ class RouteDetailsTests: XCTestCase {
             XCTFail(error.localizedDescription)
         }
     }
-    
+
     func testPathDecoded() throws {
         let data = try Data(fromJsonFileNamed: "single_route_details", forBundle: Bundle(for: type(of: self)))
         let routeDetails = try JSONDecoder().decode(RouteDetails.self, from: data)
