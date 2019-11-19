@@ -26,7 +26,7 @@ public struct RouteDetails: Decodable {
         minLatitude = try container.decode(CLLocationDegrees.self, forKey: .minLatitude)
         maxLongitude = try container.decode(CLLocationDegrees.self, forKey: .maxLongitude)
         minLongitude = try container.decode(CLLocationDegrees.self, forKey: .minLongitude)
-        let paths = try container.decode([[String: [Dictionary[String: CLLocationDegrees]]>].self, forKey: .path)
+        let paths = try container.decode([[String: [[String: CLLocationDegrees]]]].self, forKey: .path)
         var decodedPaths: [CLLocationCoordinate2D] = []
         if let points = paths[0]["points"] {
             for point in points {
