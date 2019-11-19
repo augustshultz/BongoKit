@@ -5,7 +5,7 @@
 import Foundation
 
 public enum BongoError: Error {
-    case failedToFetchStops, failedToFetchPredictions, failedToFetchRoutes, failedToFetchRouteDetails
+    case fetchFailedToReturnAnyData
 }
 
 public class BongoNetworkController {
@@ -17,84 +17,43 @@ public class BongoNetworkController {
     }
 
     public func fetchStops(_ result: @escaping (Result<[Stop], Error>) -> Void) {
-        let dataTask = session.dataTask(with: BongoURL.stopList.url) { (data, _, error) in
-            if let error = error {
-                result(.failure(error))
-                return
-            }
-            guard let data = data else {
-                result(.failure(BongoError.failedToFetchStops))
-                return
-            }
-            do {
-                let decoder = JSONDecoder()
-                let stops = try decoder.decode([Stop].self, from: data)
-                result(.success(stops))
-            } catch let error as NSError {
-                result(.failure(error))
-            }
-        }
-        dataTask.resume()
-    }
-
-    public func fetchPredictions(forStopNumber stopNumber: Int, inTimeInterval interval: Int = 60, _ result: @escaping (Result<[Prediction], Error>) -> Void) {
-        let dataTask = session.dataTask(with: BongoURL.predictions(stopNumber).url) { (data, _, error) in
-            if let error = error {
-                result(.failure(error))
-                return
-            }
-            guard let data = data else {
-                result(.failure(BongoError.failedToFetchPredictions))
-                return
-            }
-            do {
-                let decoder = JSONDecoder()
-                let predictions = try decoder.decode([Prediction].self, from: data)
-                result(.success(predictions.filter { $0.minutes <= interval }))
-            } catch let error {
-                result(.failure(error))
-                return
-            }
-        }
-        dataTask.resume()
+        fetch([Stop].self, fromUrl: BongoURL.stopList.url, result)
     }
 
     public func fetchDetails(forRoute route: Int, _ result: @escaping (Result<RouteDetails, Error>) -> Void) {
-        let dataTask = session.dataTask(with: BongoURL.routeInfo(route).url) { (data, _, error) in
-            if let error = error {
-                result(.failure(error))
-                return
-            }
-            guard let data = data else {
-                result(.failure(BongoError.failedToFetchRouteDetails))
-                return
-            }
-            do {
-                let decoder = JSONDecoder()
-                let routeDetails = try decoder.decode(RouteDetails.self, from: data)
-                result(.success(routeDetails))
-            } catch let error {
-                result(.failure(error))
-                return
-            }
-        }
-        dataTask.resume()
+        fetch(RouteDetails.self, fromUrl: BongoURL.routeInfo(route).url, result)
     }
 
     public func fetchRoutes(_ result: @escaping (Result<[Route], Error>) -> Void) {
-        let dataTask = session.dataTask(with: BongoURL.routeList.url) { (data, _, error) in
+        fetch([Route].self, fromUrl: BongoURL.routeList.url, result)
+    }
+
+    public func fetchPredictions(forStopNumber stopNumber: Int, inTimeInterval interval: Int = 60, _ result: @escaping (Result<[Prediction], Error>) -> Void) {
+        fetch([Prediction].self, fromUrl: BongoURL.predictions(stopNumber).url) { (fetchResult) in
+            switch fetchResult {
+            case .success(let predictions):
+                result(.success(predictions.filter {
+                    $0.minutes <= interval
+                }))
+            case .failure(let error):
+                result(.failure(error))
+            }
+        }
+    }
+
+    func fetch<T: Decodable>(_ type: T.Type, fromUrl url: URL, _ result: @escaping (Result<T, Error>) -> Void) {
+        let dataTask = session.dataTask(with: url) { (data, _, error) in
             if let error = error {
                 result(.failure(error))
                 return
             }
             guard let data = data else {
-                result(.failure(BongoError.failedToFetchRoutes))
+                result(.failure(BongoError.fetchFailedToReturnAnyData))
                 return
             }
             do {
                 let decoder = JSONDecoder()
-                let routes = try decoder.decode([Route].self, from: data)
-                result(.success(routes))
+                result(.success(try decoder.decode(type, from: data)))
             } catch let error {
                 result(.failure(error))
                 return

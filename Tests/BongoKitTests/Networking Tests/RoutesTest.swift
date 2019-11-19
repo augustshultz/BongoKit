@@ -41,7 +41,7 @@ class RoutesTest: XCTestCase {
                     XCTFail("unexpected error type")
                     fatalError()
                 }
-                XCTAssertEqual(bongoError, BongoError.failedToFetchRoutes)
+                XCTAssertEqual(bongoError, BongoError.fetchFailedToReturnAnyData)
             }
             failureExpectation.fulfill()
         }

@@ -42,7 +42,7 @@ class StopsTest: XCTestCase {
                     XCTFail("The fetch error should be a BongoError")
                     fatalError()
                 }
-                XCTAssertEqual(bongoError, BongoError.failedToFetchStops)
+                XCTAssertEqual(bongoError, BongoError.fetchFailedToReturnAnyData)
             }
             fetchStopsExpectation.fulfill()
         }

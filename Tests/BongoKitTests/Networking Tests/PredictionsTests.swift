@@ -42,7 +42,7 @@ class PredictionsTests: XCTestCase {
                 guard let bongoError = error as? BongoError else {
                     fatalError()
                 }
-                XCTAssertEqual(bongoError, BongoError.failedToFetchPredictions)
+                XCTAssertEqual(bongoError, BongoError.fetchFailedToReturnAnyData)
             }
             fetchPredictionsExpectation.fulfill()
         }
