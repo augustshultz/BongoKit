@@ -20,5 +20,6 @@ Numbers|Description
 ### Run tests from Terminal
 
 ```
-xcodebuild test -project BongoKit.xcodeproj -scheme BongoKit-Package -destination platform=OS X,arch=x86_64 -quiet
+xcodebuild test -project BongoKit.xcodeproj -scheme BongoKit-Package
 ```
+
