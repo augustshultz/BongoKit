@@ -7,57 +7,43 @@ import XCTest
 
 class BongoURLTests: XCTestCase {
 
-    func testRouteInfoURL() {
-        guard let expectedUrl = URL(string: "https://api.bongo.org/routes/1") else {
-            XCTFail("Invalid url")
-            return
-        }
-        let actualUrl = BongoURL.routeInfo(1).url
-        XCTAssertEqual(expectedUrl, actualUrl)
+    func testRouteInfoURL() throws {
+        let routeId = Int.randomPositive()
+        let expectedUrl = URL(string: "https://api.bongo.org/routes/\(routeId)")!
+        XCTAssertEqual(expectedUrl, .bongoRouteInfo(route: routeId))
     }
 
-    func testRouteListURL() {
-        guard let expectedUrl = URL(string: "https://api.bongo.org/routes/") else {
-            XCTFail("Invalid url")
-            return
-        }
-        let actualUrl = BongoURL.routeList.url
-        XCTAssertEqual(expectedUrl, actualUrl)
+    func testRouteListURL() throws {
+        let expectedUrl = URL(string: "https://api.bongo.org/routes/")!
+        XCTAssertEqual(expectedUrl, .bongoRouteList)
     }
 
-    func testPredictionsURL() {
-        guard let expectedUrl = URL(string: "https://api.bongo.org/predictions/1") else {
-            XCTFail("Invalid url")
-            return
-        }
-        let actualUrl = BongoURL.predictions(1).url
-        XCTAssertEqual(expectedUrl, actualUrl)
+    func testPredictionsURL() throws {
+        let stopId = Int.randomPositive()
+        let expectedUrl = URL(string: "https://api.bongo.org/predictions/\(stopId)")!
+        XCTAssertEqual(expectedUrl, .bongoPredictions(for: stopId))
     }
 
-    func testStopListURL() {
-        guard let expectedUrl = URL(string: "https://api.bongo.org/stops/") else {
-            XCTFail("Invalid url")
-            return
-        }
-        let actualUrl = BongoURL.stopList.url
-        XCTAssertEqual(expectedUrl, actualUrl)
+    func testStopListURL() throws {
+        let expectedUrl = URL(string: "https://api.bongo.org/stops/")!
+        XCTAssertEqual(expectedUrl, .bongoStopList)
     }
 
-    func testStopInfoURL() {
-        guard let expectedUrl = URL(string: "https://api.bongo.org/stops/1") else {
-            XCTFail("Invalid url")
-            return
-        }
-        let actualUrl = BongoURL.stopInfo(1).url
-        XCTAssertEqual(expectedUrl, actualUrl)
+    func testStopInfoURL() throws {
+        let stopId = Int.randomPositive()
+        let expectedUrl = URL(string: "https://api.bongo.org/stops/\(stopId)")!
+        XCTAssertEqual(expectedUrl, .bongoStopInfo(for: stopId))
     }
 
-    func testBusesURL() {
-        guard let expectedUrl = URL(string: "https://api.bongo.org/buses/1") else {
-            XCTFail("Invalid url")
-            return
-        }
-        let actualUrl = BongoURL.buses(1).url
-        XCTAssertEqual(expectedUrl, actualUrl)
+    func testBusesURL() throws {
+        let routeId = Int.randomPositive()
+        let expectedUrl = URL(string: "https://api.bongo.org/buses/\(routeId)")!
+        XCTAssertEqual(expectedUrl, .bongoBuses(for: routeId))
+    }
+}
+
+extension Int {
+    static func randomPositive() -> Int {
+        return .random(in: 1...Int.max)
     }
 }
