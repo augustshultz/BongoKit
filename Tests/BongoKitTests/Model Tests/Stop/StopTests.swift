@@ -9,7 +9,7 @@ import XCTest
 class StopTests: XCTestCase {
 
     func testDecodeSingleJsonStop() throws {
-        let json = try Data(fromJsonFileNamed: "single_stop", forBundle: Bundle(for: type(of: self)))
+        let json = try Data(fromJsonFileNamed: "single_stop")
         let actual = try JSONDecoder().decode(Stop.self, from: json)
         XCTAssertEqual(actual.stopId, "1")
         XCTAssertEqual(actual.name, "Downtown Interchange")
@@ -18,7 +18,7 @@ class StopTests: XCTestCase {
     }
 
     func testDecodeMultipleJsonStops() throws {
-        let json = try Data(fromJsonFileNamed: "multiple_stops", forBundle: Bundle(for: type(of: self)))
+        let json = try Data(fromJsonFileNamed: "multiple_stops")
         let actual = try JSONDecoder().decode([Stop].self, from: json)
         XCTAssertEqual(actual.count, 2)
     }

@@ -8,8 +8,7 @@ import XCTest
 class RoutesTest: XCTestCase {
 
     func testFetchRoutes() throws {
-        let bundle = Bundle(for: type(of: self))
-        let json = try Data(fromJsonFileNamed: "routes", forBundle: bundle)
+        let json = try Data(fromJsonFileNamed: "routes")
         let mockSession = MockURLSession(data: json, urlResponse: nil, error: nil)
         let networkController = BongoNetworkController(session: mockSession)
         let fetchRoutesExpectation = expectation(description: "wait for predictions to be fetched")
@@ -49,8 +48,7 @@ class RoutesTest: XCTestCase {
     }
 
     func testFetchRouteInfo() throws {
-        let bundle = Bundle(for: type(of: self))
-        let json = try Data(fromJsonFileNamed: "route_detail", forBundle: bundle)
+        let json = try Data(fromJsonFileNamed: "route_detail")
         let mockSession = MockURLSession(data: json, urlResponse: nil, error: nil)
         let networkController = BongoNetworkController(session: mockSession)
         let fetchDetailsExpectation = expectation(description: "wait for predictions to be fetched")

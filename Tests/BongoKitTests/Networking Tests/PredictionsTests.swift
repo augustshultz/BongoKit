@@ -7,11 +7,8 @@ import XCTest
 
 class PredictionsTests: XCTestCase {
 
-    func testFetchPredictions() {
-        guard let predictionsJsonUrl = Bundle(for: type(of: self)).url(forResource: "predictions", withExtension: "json"),
-              let jsonData = try? Data(contentsOf: predictionsJsonUrl) else {
-            fatalError("Could not convert string contents into data")
-        }
+    func testFetchPredictions() throws {
+        let jsonData = try Data(fromJsonFileNamed: "predictions")
         let mockSession = MockURLSession(data: jsonData, urlResponse: nil, error: nil)
         let networkController = BongoNetworkController(session: mockSession)
         let fetchPredictionsExpectation = expectation(description: "wait for predictions to be fetched")
