@@ -7,10 +7,8 @@ import XCTest
 
 class StopsTest: XCTestCase {
 
-    func testFetchStops() {
-        guard let jsonDataUrl = Bundle(for: type(of: self)).url(forResource: "stops", withExtension: "json"), let jsonData = try? Data(contentsOf: jsonDataUrl) else {
-            fatalError("Could not convert string contents into data")
-        }
+    func testFetchStops() throws {
+        let jsonData = try Data(fromJsonFileNamed: "stops")
         let mockSession = MockURLSession(data: jsonData, urlResponse: nil, error: nil)
         let networkController = BongoNetworkController(session: mockSession)
         let fetchStopsExpectation = expectation(description: "wait for stops to be fetched")

@@ -8,14 +8,14 @@ import XCTest
 class RouteDetailsTests: XCTestCase {
 
     func testRouteDecoded() throws {
-        let data = try Data(fromJsonFileNamed: "single_route_details", forBundle: Bundle(for: type(of: self)))
+        let data = try Data(fromJsonFileNamed: "single_route_details")
         let routeDetails = try JSONDecoder().decode(RouteDetails.self, from: data)
         XCTAssertEqual(routeDetails.route.routeId, 2355)
     }
 
     func testStopsDecoded() throws {
         do {
-            let data = try Data(fromJsonFileNamed: "single_route_details", forBundle: Bundle(for: type(of: self)))
+            let data = try Data(fromJsonFileNamed: "single_route_details")
             let routeDetails = try JSONDecoder().decode(RouteDetails.self, from: data)
             XCTAssertGreaterThan(routeDetails.stops.count, 0)
         } catch let error {
@@ -25,7 +25,7 @@ class RouteDetailsTests: XCTestCase {
 
     func testMaxMinLatitudeLongitudeDecoded() throws {
         do {
-            let data = try Data(fromJsonFileNamed: "single_route_details", forBundle: Bundle(for: type(of: self)))
+            let data = try Data(fromJsonFileNamed: "single_route_details")
             let routeDetails = try JSONDecoder().decode(RouteDetails.self, from: data)
             XCTAssertEqual(routeDetails.maxLatitude, 41.6602)
             XCTAssertEqual(routeDetails.minLatitude, 41.65046)
@@ -37,7 +37,7 @@ class RouteDetailsTests: XCTestCase {
     }
 
     func testPathDecoded() throws {
-        let data = try Data(fromJsonFileNamed: "single_route_details", forBundle: Bundle(for: type(of: self)))
+        let data = try Data(fromJsonFileNamed: "single_route_details")
         let routeDetails = try JSONDecoder().decode(RouteDetails.self, from: data)
         XCTAssertGreaterThan(routeDetails.path.count, 0)
     }

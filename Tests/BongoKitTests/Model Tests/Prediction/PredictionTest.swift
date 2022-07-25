@@ -8,19 +8,19 @@ import XCTest
 class PredictionTest: XCTestCase {
 
     func testPredictionNameDecode() throws {
-        let json = try Data(fromJsonFileNamed: "single_prediction", forBundle: Bundle(for: type(of: self)))
+        let json = try Data(fromJsonFileNamed: "single_prediction")
         let prediction = try JSONDecoder().decode(Prediction.self, from: json)
         XCTAssertEqual(prediction.name, "Lantern Park")
     }
 
     func testPredictionShortNameDecode() throws {
-        let json = try Data(fromJsonFileNamed: "single_prediction", forBundle: Bundle(for: type(of: self)))
+        let json = try Data(fromJsonFileNamed: "single_prediction")
         let prediction = try JSONDecoder().decode(Prediction.self, from: json)
         XCTAssertEqual(prediction.shortName, "lanternpark")
     }
 
     func testPredictionAdencyNameDecode() throws {
-        let json = try Data(fromJsonFileNamed: "single_prediction", forBundle: Bundle(for: type(of: self)))
+        let json = try Data(fromJsonFileNamed: "single_prediction")
         let prediction = try JSONDecoder().decode(Prediction.self, from: json)
         XCTAssertEqual(prediction.agencyName, "Coralville Transit")
     }
