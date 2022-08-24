@@ -12,7 +12,7 @@ public class BongoNetworkController {
 
     private let session: URLSession
 
-    public init(session: URLSession = URLSession.shared) {
+    public init(session: URLSession = URLSession.shared, baseUrl: URL = URL(string: "https://api.bongo.org")!) {
         self.session = session
     }
 
